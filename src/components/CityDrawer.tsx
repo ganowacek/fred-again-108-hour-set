@@ -7,7 +7,7 @@ import type { ArchiveSet, ArchiveShow, TourCity } from "@/types/archive";
 
 type CityDrawerProps = {
   city: TourCity;
-  currentPlaybackId: string;
+  currentPlaybackId: string | null;
   onPlayFullShow: (show: ArchiveShow) => void;
   onPlaySegment: (show: ArchiveShow, set: ArchiveSet) => void;
 };
