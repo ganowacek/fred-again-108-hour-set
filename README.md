@@ -6,10 +6,11 @@ An interactive web app for exploring Fred again..'s USB002 108-hour YouTube arch
 
 ## Features
 
-- Dark, full-screen Leaflet map with glowing tour markers
+- Full-screen Leaflet map with glowing tour markers and a dark / light theme toggle
 - Grouped city drawers for Toronto 1/2, NY1-NY6, and LDN1-LDN4
-- Timestamped YouTube launch links from the original archive video
-- Persistent playback dock that stays open while browsing other cities
+- Embedded YouTube player that loads the original archive video at the correct timestamp
+- "YouTube" and "YouTube Music" launch buttons that deep-link to the same timestamp
+- Persistent playback dock that stays visible while browsing other sets and cities
 - Structured TypeScript data in `src/data/sets.ts` for easy editing
 - Responsive layout for desktop and mobile
 

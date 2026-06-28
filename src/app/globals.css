@@ -34,8 +34,16 @@ button {
   font-family: inherit;
 }
 
-.leaflet-tile {
-  filter: brightness(1.28) contrast(1.08) saturate(1.2);
+.theme-dark .leaflet-tile {
+  filter: brightness(1.62) contrast(1.24) saturate(1.18);
+}
+
+.theme-light .leaflet-container {
+  background: #e9edf3;
+}
+
+.theme-light .leaflet-tile {
+  filter: saturate(1.05) brightness(1.01);
 }
 
 .leaflet-control-zoom {
@@ -72,6 +80,24 @@ button {
   color: rgba(255, 255, 255, 0.88) !important;
   box-shadow: 0 0 24px rgba(121, 243, 255, 0.18) !important;
   padding: 6px 10px !important;
+}
+
+.theme-light .leaflet-control-zoom {
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+}
+
+.theme-light .leaflet-control-zoom a {
+  color: rgba(15, 23, 42, 0.72) !important;
+}
+
+.theme-light .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.7) !important;
+  color: rgba(15, 23, 42, 0.55) !important;
+}
+
+.theme-light .leaflet-control-attribution a {
+  color: rgba(8, 145, 178, 0.9) !important;
 }
 
 .noise-layer {
