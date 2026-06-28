@@ -2,6 +2,8 @@
 
 An interactive web app for exploring Fred again..'s USB002 108-hour YouTube archive by tour city, show, and timestamp.
 
+[Open the live archive](https://ganowacek.github.io/fred-again-108-hour-set/)
+
 ## Features
 
 - Dark, full-screen Leaflet map with glowing tour markers
@@ -34,13 +36,6 @@ The app automatically converts the timestamp to seconds for YouTube embeds. For 
 
 ## Deploy
 
-### Vercel
+The app deploys automatically to GitHub Pages when changes land on `main`.
 
-1. Push this project to GitHub.
-2. Import the repository in Vercel.
-3. Keep the default Next.js settings.
-4. Deploy.
-
-### GitHub Pages
-
-This app is built for Next.js hosting. For GitHub Pages, configure a static export or use a deployment action that runs `npm run build` and publishes the generated output. Vercel is the simplest route for this project because the default Next.js setup works out of the box.
+Live URL: [https://ganowacek.github.io/fred-again-108-hour-set/](https://ganowacek.github.io/fred-again-108-hour-set/)
