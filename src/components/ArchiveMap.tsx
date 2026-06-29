@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { MapContainer, Marker, TileLayer, Tooltip, ZoomControl, useMapEvents } from "react-leaflet";
 import { CarMode } from "@/components/CarMode";
 import { CityDrawer } from "@/components/CityDrawer";
-import { PlayerDock } from "@/components/PlayerDock";
+import { Player, type PlayerStage } from "@/components/Player";
 import { allSets, getSegmentTiming, getShowTiming, showTimeline, tourCities } from "@/data/sets";
 import type { ArchiveSet, ArchiveShow, PlayerSelection, TourCity } from "@/types/archive";
 
@@ -100,6 +100,7 @@ export default function ArchiveMap() {
   const [isPlayerActive, setIsPlayerActive] = useState(false);
   const [theme, setTheme] = useState<Theme>("dark");
   const [viewMode, setViewMode] = useState<ViewMode>("map");
+  const [carExpanded, setCarExpanded] = useState(false);
   const [query, setQuery] = useState("");
 
   // Restore persisted preferences after mount (component is client-only).
@@ -133,6 +134,29 @@ export default function ArchiveMap() {
 
   const currentPlaybackId = isPlayerActive ? playerSelection.id : null;
   const toggleTheme = () => setTheme((current) => (current === "dark" ? "light" : "dark"));
+
+  const playerStage: PlayerStage = viewMode === "map" ? "dock" : carExpanded ? "full" : "mini";
+
+  // Chronological flat list of every segment, used for Prev / Next navigation.
+  const currentFlatIndex = useMemo(() => {
+    if (playerSelection.id.startsWith("set:")) {
+      const setId = playerSelection.id.slice(4);
+      return allSets.findIndex((entry) => entry.set.id === setId);
+    }
+    if (playerSelection.id.startsWith("show:")) {
+      const showId = playerSelection.id.slice(5);
+      return allSets.findIndex((entry) => entry.show.id === showId);
+    }
+    return -1;
+  }, [playerSelection.id]);
+
+  const playFlatIndex = (index: number) => {
+    const entry = allSets[index];
+    if (entry) playSegment(entry.city, entry.show, entry.set);
+  };
+
+  const canPrev = currentFlatIndex > 0;
+  const canNext = currentFlatIndex >= 0 && currentFlatIndex < allSets.length - 1;
 
   const filteredCities = useMemo(() => {
     const cleanQuery = query.trim().toLowerCase();
@@ -326,13 +350,27 @@ export default function ArchiveMap() {
         <CarMode
           cities={tourCities}
           currentPlaybackId={currentPlaybackId}
-          onExit={() => setViewMode("map")}
+          onExit={() => {
+            setCarExpanded(false);
+            setViewMode("map");
+          }}
           onPlayShow={playShow}
           onPlaySegment={playSegment}
         />
       )}
 
-      <PlayerDock selection={playerSelection} active={isPlayerActive} />
+      <Player
+        selection={playerSelection}
+        active={isPlayerActive}
+        stage={playerStage}
+        canPrev={canPrev}
+        canNext={canNext}
+        onActivate={() => setIsPlayerActive(true)}
+        onPrev={() => canPrev && playFlatIndex(currentFlatIndex - 1)}
+        onNext={() => canNext && playFlatIndex(currentFlatIndex + 1)}
+        onExpand={() => setCarExpanded(true)}
+        onCollapse={() => setCarExpanded(false)}
+      />
     </main>
   );
 }

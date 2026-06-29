@@ -10,9 +10,12 @@ An interactive web app for exploring Fred again..'s USB002 108-hour YouTube arch
 - **Car Mode** — a large, high-contrast, touch-friendly list view for safe use while
   driving, with quick-jump city navigation and no map interaction required
 - Grouped city drawers for Toronto 1/2, NY1-NY6, and LDN1-LDN4
-- Embedded YouTube player that loads the original archive video at the correct timestamp
-- "YouTube" and "YouTube Music" launch buttons that deep-link to the same timestamp
-- Persistent playback dock that keeps playing while switching between Map and Car Mode
+- In-browser playback via the YouTube IFrame Player API (inline on mobile Safari)
+  with Play/Pause and Previous/Next segment controls
+- Tappable mini-player that expands into a full-screen, Apple-Music-style
+  "Now Playing" view (large video, title, city/show, timestamp range, transport controls)
+- "YouTube" and "YouTube Music" buttons kept as secondary launch options
+- Persistent player that keeps playing while switching between Map, Car, mini, and full views
 - Remembers your last view (Map or Car) and theme via local storage
 - Structured TypeScript data in `src/data/sets.ts` for easy editing
 - Responsive layout for desktop and mobile
