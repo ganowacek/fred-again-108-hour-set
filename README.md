@@ -7,10 +7,13 @@ An interactive web app for exploring Fred again..'s USB002 108-hour YouTube arch
 ## Features
 
 - Full-screen Leaflet map with glowing tour markers and a dark / light theme toggle
+- **Car Mode** — a large, high-contrast, touch-friendly list view for safe use while
+  driving, with quick-jump city navigation and no map interaction required
 - Grouped city drawers for Toronto 1/2, NY1-NY6, and LDN1-LDN4
 - Embedded YouTube player that loads the original archive video at the correct timestamp
 - "YouTube" and "YouTube Music" launch buttons that deep-link to the same timestamp
-- Persistent playback dock that stays visible while browsing other sets and cities
+- Persistent playback dock that keeps playing while switching between Map and Car Mode
+- Remembers your last view (Map or Car) and theme via local storage
 - Structured TypeScript data in `src/data/sets.ts` for easy editing
 - Responsive layout for desktop and mobile
 
