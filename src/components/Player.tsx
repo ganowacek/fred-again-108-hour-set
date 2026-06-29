@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, ChevronUp, Music2, Pause, Play, SkipBack, SkipForward, Youtube } from "lucide-react";
+import { ChevronDown, ChevronUp, Music2, Pause, Play, RotateCcw, RotateCw, SkipBack, SkipForward, Youtube } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { youtubeVideoId } from "@/data/sets";
 import type { PlayerSelection } from "@/types/archive";
@@ -129,6 +129,14 @@ export function Player({
     else player.playVideo();
   };
 
+  // Seek relative to the current playback position (e.g. +/- 15 seconds).
+  const seekBy = (deltaSeconds: number) => {
+    const player = playerRef.current;
+    if (!active || !readyRef.current || !player?.getCurrentTime) return;
+    const next = Math.max(0, player.getCurrentTime() + deltaSeconds);
+    player.seekTo(next, true);
+  };
+
   const youtubeUrl = `https://www.youtube.com/watch?v=${youtubeVideoId}&t=${selection.startSeconds}s`;
   const youtubeMusicUrl = `https://music.youtube.com/watch?v=${youtubeVideoId}&t=${selection.startSeconds}`;
 
@@ -223,6 +231,29 @@ export function Player({
                   className="grid size-14 place-items-center rounded-full text-white transition active:scale-90 disabled:opacity-30"
                 >
                   <SkipForward size={30} fill="currentColor" />
+                </button>
+              </div>
+
+              <div className="mt-5 flex items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => seekBy(-15)}
+                  disabled={!active}
+                  aria-label="Rewind 15 seconds"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5 text-sm font-semibold text-white transition active:scale-95 disabled:opacity-30"
+                >
+                  <RotateCcw size={18} />
+                  15s
+                </button>
+                <button
+                  type="button"
+                  onClick={() => seekBy(15)}
+                  disabled={!active}
+                  aria-label="Forward 15 seconds"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5 text-sm font-semibold text-white transition active:scale-95 disabled:opacity-30"
+                >
+                  15s
+                  <RotateCw size={18} />
                 </button>
               </div>
 

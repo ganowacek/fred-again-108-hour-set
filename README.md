@@ -11,7 +11,7 @@ An interactive web app for exploring Fred again..'s USB002 108-hour YouTube arch
   driving, with quick-jump city navigation and no map interaction required
 - Grouped city drawers for Toronto 1/2, NY1-NY6, and LDN1-LDN4
 - In-browser playback via the YouTube IFrame Player API (inline on mobile Safari)
-  with Play/Pause and Previous/Next segment controls
+  with Play/Pause, Previous/Next segment, and -15s / +15s seek controls
 - Tappable mini-player that expands into a full-screen, Apple-Music-style
   "Now Playing" view (large video, title, city/show, timestamp range, transport controls)
 - "YouTube" and "YouTube Music" buttons kept as secondary launch options
